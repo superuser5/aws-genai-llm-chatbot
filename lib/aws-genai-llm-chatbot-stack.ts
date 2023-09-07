@@ -95,7 +95,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
 
 
     /* --- OPTIONAL: SELF HOSTED MODELS ON SAGEMAKER --- */
-    /*
+
     // Falcon Lite example from HuggingFace
     const falconLite = new SageMakerModel(this, 'FalconLite', {
       vpc: vpc.vpc,
@@ -126,7 +126,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
       name: 'FalconLite',
       endpoint: falconLite.endpoint,
     });
-    /*
+
     // LLAMA V2 example from Jumpstart
     /*
     const llama2base = new SageMakerModel(this, 'LLamaV2Base', {
@@ -175,7 +175,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
     */
 
     /* --- OPTIONAL: RAG SECTION --- */
-    /*
+
     // Create a topic for the data bucket this will act as a message bus only for uploaded/deleted documents
     const dataTopic = new sns.Topic(this, 'DataTopic');
 
@@ -286,12 +286,11 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
       identityPoolId: authentication.identityPool.identityPoolId,
       webSocketApiUrl: websocketInterface.webSocketApiUrl,
       architecture,
-      // dataBucket, // uncomment this line to enable file uploads from the user interface to the data bucket for RAG source(s)
+      dataBucket, // uncomment this line to enable file uploads from the user interface to the data bucket for RAG source(s)
     });
 
     // Enable cors for the data bucket to allow uploads from the user interface
     // ref: https://docs.amplify.aws/lib/storage/getting-started/q/platform/js/#amazon-s3-bucket-cors-policy-setup
-    /*  
     dataBucket.addCorsRule({
       allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.PUT, s3.HttpMethods.POST, s3.HttpMethods.DELETE],
       allowedOrigins: [`https://${userInterface.distributionDomainName}`],
@@ -300,6 +299,5 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
       exposedHeaders: ['x-amz-server-side-encryption', 'x-amz-request-id', 'x-amz-id-2', 'ETag'],
       maxAge: 3000,
     });
-    */
   }
 }
