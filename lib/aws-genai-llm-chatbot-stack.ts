@@ -104,7 +104,8 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
         type: DeploymentType.Container,
         modelId: 'amazon/FalconLite',
         container: ContainerImages.HF_PYTORCH_LLM_TGI_INFERENCE_LATEST,
-        instanceType: 'ml.g5.12xlarge',
+        // instanceType: 'ml.g5.12xlarge', //original
+        instanceType: 'ml.g5.8xlarge', 
         // https://github.com/awslabs/extending-the-context-length-of-open-source-llms/blob/main/custom-tgi-ecr/deploy.ipynb
         containerStartupHealthCheckTimeoutInSeconds: 600,
         env: {
