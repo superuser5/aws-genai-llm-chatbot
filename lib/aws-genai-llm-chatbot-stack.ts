@@ -97,6 +97,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
     /* --- OPTIONAL: SELF HOSTED MODELS ON SAGEMAKER --- */
 
     // Falcon Lite example from HuggingFace
+    /*
     const falconLite = new SageMakerModel(this, 'FalconLite', {
       vpc: vpc.vpc,
       region: this.region,
@@ -104,8 +105,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
         type: DeploymentType.Container,
         modelId: 'amazon/FalconLite',
         container: ContainerImages.HF_PYTORCH_LLM_TGI_INFERENCE_LATEST,
-        // instanceType: 'ml.g5.12xlarge', //original
-        instanceType: 'ml.g5.8xlarge', 
+        instanceType: 'ml.g5.12xlarge',
         // https://github.com/awslabs/extending-the-context-length-of-open-source-llms/blob/main/custom-tgi-ecr/deploy.ipynb
         containerStartupHealthCheckTimeoutInSeconds: 600,
         env: {
@@ -127,16 +127,18 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
       name: 'FalconLite',
       endpoint: falconLite.endpoint,
     });
+    */
 
     // LLAMA V2 example from Jumpstart
-    /*
+    
     const llama2base = new SageMakerModel(this, 'LLamaV2Base', {
       vpc: vpc.vpc,
       region: this.region,
       model: {
         type: DeploymentType.ModelPackage,
         modelId: 'meta-LLama2-13b',
-        instanceType: 'ml.g5.12xlarge',
+        // instanceType: 'ml.g5.12xlarge',
+        instanceType: 'ml.r5.4xlarge',  //  128 GiB
         packages: (scope) =>
           new cdk.CfnMapping(scope, 'Llama2BasePackageMapping', {
             lazy: true,
@@ -158,7 +160,8 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
       model: {
         type: DeploymentType.ModelPackage,
         modelId: 'meta-LLama2-13b-chat',
-        instanceType: 'ml.g5.12xlarge',
+        // instanceType: 'ml.g5.12xlarge', //original
+        instanceType: 'ml.r5.4xlarge',  //  128 GiB
         packages: (scope) =>
           new cdk.CfnMapping(scope, 'Llama2ChatPackageMapping', {
             lazy: true,
@@ -173,7 +176,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
       name: 'LLama2-13b-chat',
       endpoint: llama2chat.endpoint,
     });
-    */
+    
 
     /* --- OPTIONAL: RAG SECTION --- */
 
