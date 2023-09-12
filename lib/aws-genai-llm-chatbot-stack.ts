@@ -36,7 +36,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
     // If you have access to bedrock, set up here the region and endpoint url
     const bedrockRegion = 'region';
     // For example https://bedrock.us-east-1.amazonaws.com
-    const bedrockEndpointUrl = 'https://endpoint-url';
+    const bedrockEndpointUrl = 'https://bedrock.us-east-1.amazonaws.com';
 
     // VPC Construct
     // Create subnets for DBs and VPC endpoints
@@ -130,7 +130,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
     */
 
     // LLAMA V2 example from Jumpstart
-    
+    /*
     const llama2base = new SageMakerModel(this, 'LLamaV2Base', {
       vpc: vpc.vpc,
       region: this.region,
@@ -176,7 +176,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
       name: 'LLama2-13b-chat',
       endpoint: llama2chat.endpoint,
     });
-    
+    */
 
     /* --- OPTIONAL: RAG SECTION --- */
 
