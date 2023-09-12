@@ -34,7 +34,7 @@ export class AwsGenaiLllmChatbotStack extends cdk.Stack {
     /* --- BASIC USAGE --- */
 
     // If you have access to bedrock, set up here the region and endpoint url
-    const bedrockRegion = 'region';
+    const bedrockRegion = 'us-east-1';
     // For example https://bedrock.us-east-1.amazonaws.com
     const bedrockEndpointUrl = 'https://bedrock.us-east-1.amazonaws.com';
 
